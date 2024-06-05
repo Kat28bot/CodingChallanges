@@ -259,13 +259,79 @@ public class Main {
         }
         return head;
     }
+    public static int removeDuplicates2(int[] nums) {
+      //  return Arrays.stream(nums).distinct().toArray().length;
+       List<Integer> unums=new ArrayList<>();
+        for(int el:nums){
+            if(!unums.contains(el)) {
+                unums.add(el);
+            }
+        }
+        Collections.sort(unums);
+        nums=new int[unums.size()];
+        int i=0;
+        for(int u:unums){
+            nums[i]=u;
+            i++;
+        }
+        return nums.length;
+    }
+    public static int[] solution(int[] nums, int sum){
+        int[] solution= new int[2];
+        ArrayList<Integer> numsList = new ArrayList<>();
+        for(int n:nums){
+            numsList.add(n);
+        }
+        for(int i=0;i<numsList.size();i++){
+            List<Integer> sublist = numsList.subList(i, numsList.size());
+            int secIndex=sublist.indexOf(sum-(numsList.get(i)));
+            if(-1<secIndex){
+                solution[0]=numsList.get(i);
+                solution[1]=sublist.get(secIndex);
+                return solution;
+            }
+
+        }
+        return solution;
+    }
+    public static int[] solution2(int[] nums, int sum){
+        ArrayList<Integer> numsList = new ArrayList<>();
+        for(int n:nums){
+            int additive=sum-(n);
+            if(numsList.contains(additive)){
+                return new int[] {n,additive};
+            }
+            numsList.add(n);
+        }
+        return new int[] {};
+    }
+    public static int[] solution3(int[] nums, int sum){
+        HashMap<Integer,Integer> numsList = new HashMap();
+        for(int n:nums){
+            int additive=sum-(n);
+            if(numsList.containsKey(additive)){
+                return new int[] {n,additive};
+            }
+            numsList.put(n,n);
+        }
+        return new int[] {};
+    }
     public static void main(String[] args) {
-            int[] nums = {-1,2,1,-4};
-            System.out.println(letterCombinations("2345"));
-          //  System.out.println(Integer.MAX_VALUE);
-        ListNode l13 = new ListNode(4);
-        ListNode l12= new ListNode(2,l13);
-        ListNode l1= new ListNode(1,l12);
+
+
+//            int[] nums = {-1,2,1,-4};
+//            System.out.println(letterCombinations("2345"));
+//          //  System.out.println(Integer.MAX_VALUE);
+//        ListNode l13 = new ListNtNode(2,l13);ode(4);
+////        ListNode l12= new Lis
+//        ListNode l1= new ListNode(1,l12);
+        int[] xd={1,2,3,2,2,9};
+        int[] xd2={4,2,1,4};
+        int[] sol=solution3(xd2,8);
+  for(int s:sol){
+      System.out.println(s);
+  }
+//removeDuplicates2(xd);
 //
 //        ListNode l23 = new ListNode(4);
 //        ListNode l22 = new ListNode(3,l23);
