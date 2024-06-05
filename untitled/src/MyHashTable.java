@@ -29,7 +29,6 @@ public class MyHashTable<K,V> {
             }
         }
         size++;
-
     }
     public V get(K key){
         int index = hash(key);
@@ -70,13 +69,13 @@ public class MyHashTable<K,V> {
     }
 
 }
- class Entry<K,V>{
-K key;
-V value;
-Entry<K,V> next;
-public Entry(K key, V value){
-    this.key=key;
-    this.value=value;
-    this.next=null;
-}
+class Entry<K,V>{
+    K key;
+    V value;
+    Entry<K,V> next;
+    public Entry(K key, V value){
+        this.key=key;
+        this.value=value;
+        this.next=null;
+    }
 }
