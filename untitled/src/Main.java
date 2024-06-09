@@ -257,6 +257,7 @@ public class Main {
             //System.out.print(next.val);
             next=next.next;
         }
+        String s; StringBuilder sb;
         return head;
     }
     public static int removeDuplicates2(int[] nums) {
@@ -316,8 +317,35 @@ public class Main {
         }
         return new int[] {};
     }
+    public static boolean isPalindrome(String s){
+        String sub1;
+        String sub2 = s.substring(s.length()/2,s.length());
+        if(s.length()%2 == 0){
+            sub1 = s.substring(0, (s.length() / 2) );
+        }else{
+            sub1 = s.substring(0, (s.length() / 2) +1);
+        }
+        sub2=new StringBuilder(sub2).reverse().toString();
+        return sub1.equals(sub2);
+    }
+    public static String longestPalindrome(String s) {
+            if(s.length()<=1){return s;}
+            if(isPalindrome(s)){return s;}
+            String longest=""+s.charAt(0);
+            for(int i=0;i<s.length();i++){
+               StringBuilder sb=new StringBuilder();
+               sb.append(s.charAt(i));
+                for(int j=i+1;j<s.length();j++){
+                    sb.append(s.charAt(j));
+                    if(isPalindrome(sb.toString())&&longest.length()<sb.toString().length()){
+                       longest=sb.toString();
+                    }
+                }
+            }
+            return longest;
+    }
     public static void main(String[] args) {
-
+        System.out.println(longestPalindrome("cbbd"));
 
 //            int[] nums = {-1,2,1,-4};
 //            System.out.println(letterCombinations("2345"));
@@ -325,12 +353,12 @@ public class Main {
 //        ListNode l13 = new ListNtNode(2,l13);ode(4);
 ////        ListNode l12= new Lis
 //        ListNode l1= new ListNode(1,l12);
-        int[] xd={1,2,3,2,2,9};
-        int[] xd2={4,2,1,4};
-        int[] sol=solution3(xd2,8);
-  for(int s:sol){
-      System.out.println(s);
-  }
+//        int[] xd={1,2,3,2,2,9};
+//        int[] xd2={4,2,1,4};
+//        int[] sol=solution3(xd2,8);
+//  for(int s:sol){
+//      System.out.println(s);
+//  }
 //removeDuplicates2(xd);
 //
 //        ListNode l23 = new ListNode(4);
