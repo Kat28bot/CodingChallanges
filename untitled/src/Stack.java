@@ -23,15 +23,17 @@ public class Stack<T> {
         return value;
     }
     public T peek(){
-        return null;
+        return stack[size-1];
     }
     public boolean isEmpty(){
-        return false;
+        return size==0;
     }
     public int size(){
         return size;
     }
     public void resize(){
-
+        T[] newStack = (T[]) new Object[stack.length * 2];
+        System.arraycopy(stack, 0, newStack, 0, stack.length);
+        stack = newStack;
     }
 }

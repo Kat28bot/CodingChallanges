@@ -344,9 +344,140 @@ public class Main {
             }
             return longest;
     }
-    public static void main(String[] args) {
-        System.out.println(longestPalindrome("cbbd"));
+    public  String convert(String s, int numRows)
+    {
+        if(numRows == 1){ return s; }
 
+        StringBuilder sb = new StringBuilder();
+        int offset = 2 * numRows - 2;
+        for(int i = 0; i < numRows; ++i) {
+            for (int j = 0; j + i < s.length(); j += offset) {
+                sb.append(s.charAt(j + i));
+                if (i != 0 && i != numRows - 1 && j + offset - i < s.length()) {
+                    sb.append(s.charAt(j + offset - i));
+                }
+            }
+        }
+        return sb.toString();
+    }
+    public boolean isIntPalindrome(int x){
+            if(x<0){
+                return false;
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append(x); sb.reverse();
+            return sb.toString().equals(String.valueOf(x));
+    }
+//    public String intToRoman(int num) {
+//
+//    }
+public static ListNode toListNode(List<Integer> list){
+    ArrayList<Integer> result=new ArrayList<>();
+    ListNode head=new ListNode(list.get(0));
+    ListNode node=head;
+    for(int i=1;i<list.size();i++){
+        node.next=new ListNode(list.get(i));
+        node=node.next;
+    }
+    return head;
+}
+public static List<Integer> toList(ListNode head){
+    ArrayList<Integer> result=new ArrayList<>();
+    ListNode node=head;
+    while(node!=null){
+        result.add(node.val);
+        node=node.next;
+    }
+    return result;
+}
+    public static void nextPermutation(int[] nums) {
+
+        int number=0;
+
+        for (int num : nums) {
+            number = number * 10 + num;
+        }
+        int newnumber=number;
+        int swap1=nums.length-1, swap2=nums.length-1;
+        for(int i=nums.length-1;i>0;i--){
+            for(int j=i-1;j>=0;j--){
+                StringBuilder sb = new StringBuilder(String.valueOf(number));
+                char temp = sb.charAt(i);
+                sb.setCharAt(i, sb.charAt(j));
+                sb.setCharAt(j, temp);
+                if(newnumber<Integer.parseInt(sb.toString())){
+                  newnumber=Integer.parseInt(sb.toString());
+                  swap1=i;swap2=j;
+                }
+            }
+
+                swap(nums,swap1,swap2);
+               //return;
+
+        }
+        int result=0;
+        for (int num : nums) {
+            result = result * 10 + num;
+        }
+        if(number==result){
+            swap(nums,0,nums.length-1);
+        }
+    }
+    public int[] searchRange(int[] nums, int target) {
+        int low = 0, high = nums.length -1;
+        int mid = (low + high) / 2;
+        while(low<=high){
+
+        }
+        return new int[]{-1,1};
+    }
+    public static void swap(int[] nums,int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
+    public static void merge(int[] nums1, int m, int[] nums2, int n) {
+        for(int i=0;i<n;i++){
+            int index = findIndex(nums1,nums2[i],m+i);
+            insert(nums1,index,nums2[i]);
+        }
+
+    }
+    public static void insert(int[] nums, int index, int val){
+        for(int i=nums.length-1;i>index;i--){
+            nums[i]=nums[i-1];
+        }
+        nums[index]=val;
+    }
+    public static int findIndex(int[] nums, int target, int m){
+
+        if(target<nums[0]){return 0;}
+        for(int i=1;i<m;i++){
+            if(nums[i]>target){
+                return i;
+            }
+        }
+        return m;
+    }
+    public static void main(String[] args) {
+        //System.out.println(longestPalindrome("cbbd"));
+        int[] nums1={1,2,3,0,0,0};
+        merge(nums1, 3, new int[]{2,5,6}, 3);
+       //swap(nums,0,2);
+        //nextPermutation(nums);
+        for(int n:nums1){
+            System.out.print(n);
+        }
+
+
+//        List<Integer> list=Arrays.asList(1,2,3,4,5);
+//        ListNode head = toListNode(list);
+//        System.out.println(head.val+ " "+head.next.val);
+//        List<Integer> res=toList(head);
+//
+//        for(int val:res){
+//            System.out.print(val+"->");
+//        }
 //            int[] nums = {-1,2,1,-4};
 //            System.out.println(letterCombinations("2345"));
 //          //  System.out.println(Integer.MAX_VALUE);
